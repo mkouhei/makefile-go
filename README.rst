@@ -15,16 +15,16 @@ Installation
 ::
    
    $ git clone https://github.com/mkouhei/makefile-go.git
-   $ install -d /path/to/somerepo
-   $ cp makefile-go/Makefile /path/to/somerepo
-   $ cd /path/to/somerepo
-   $ make REPO=git@example.org/username/reponame.git
   
 Basic usage
 -----------
 
-Running ``make`` in your repository of Golang.
+Running ``make`` in your repository of Golang.::
 
+   $ install -d /path/to/somerepo  
+   $ cp makefile-go/Makefile /path/to/somerepo
+   $ cd /path/to/somerepo
+   $ make REPO=git@example.org/username/reponame.git
 
 Optional
 --------
