@@ -7,6 +7,8 @@ Requirements
 
 * Golang >= 1.2
 * GNU make
+* Git >= 1.7
+* Python 2.7 or Python 3.4
   
 Installation
 ------------
@@ -21,6 +23,13 @@ Installation
 Basic usage
 -----------
 
+Running ``make`` in your repository of Golang.
+
+
+Optional
+--------
+
+Support building Sphinx documentation.
 
 License
 -------
