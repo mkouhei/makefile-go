@@ -55,6 +55,12 @@ How to use
    $ make
    $ make REPO=git@example.org/username/somerepo.git  # firstly only
 
+Tested environments
+-------------------
+
+* Debian GNU/Linux Sid
+* OS X Yosemite
+
 License
 -------
 
