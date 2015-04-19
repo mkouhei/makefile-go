@@ -22,8 +22,8 @@ Featurse
 Optional
 ~~~~~~~~
 
-Support building Sphinx documentation.
-    
+* Support building Sphinx documentation.
+* Put ``some.in`` file to extend variables.
 
 Requirements
 ------------
