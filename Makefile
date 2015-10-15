@@ -67,6 +67,9 @@ else
 	fi
 endif
 endif
+	@if [ ! -d $(CURDIR)/.git/hooks ]; then\
+		install -d $(CURDIR)/.git/hooks;\
+	fi
 	@if [ ! -x $(CURDIR)/.git/hooks/pre-commit ]; then \
 		echo "#!/bin/sh -e\n\nmake" > $(CURDIR)/.git/hooks/pre-commit;\
 		chmod +x $(CURDIR)/.git/hooks/pre-commit;\
