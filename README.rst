@@ -1,6 +1,12 @@
 =====================
  Makefile for Golang
-=====================
+ =====================
+
+Status
+------
+
+.. image:: https://travis-ci.org/mkouhei/makefile-go.svg
+    :target: https://travis-ci.org/mkouhei/makefile-go
 
 Featurse
 --------
