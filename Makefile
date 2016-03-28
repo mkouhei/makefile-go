@@ -1,7 +1,7 @@
 #!/usr/bin/make -f
 # -*- makefile -*-
 #
-# Copyright 2015 Kouhei Maeda <mkouhei@palmtb.net>
+# Copyright 2015-2016 Kouhei Maeda <mkouhei@palmtb.net>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -47,9 +47,9 @@ FUNC := -func
 
 -include $(wildcard *.in)
 
-all: precheck clean test build build-docs
+all: precheck clean test build build-docs ## make all
 
-precheck:
+precheck: ## precheck
 ifeq ($(GOPKG),)
 	@echo $(MSG)
 	@false
@@ -75,25 +75,25 @@ endif
 		chmod +x $(CURDIR)/.git/hooks/pre-commit;\
 	fi
 
-prebuild: $(SRC)
+prebuild: $(SRC) ## pre-build
 	go get -d -v ./...
 	install -d $(CURDIR)/_build/src/$(GOPKG)
 	$(PREBUILD_CMD)
 	cp -a $(PREBUILD_COPY_OPTS) $(CURDIR)/*.go $(CURDIR)/_build/src/$(GOPKG)
 
-build: prebuild
+build: prebuild ## go build
 	go build -ldflags "-X main.ver $(shell git describe --always)" -o _build/$(BIN)
 
-build-only: $(SRC)
+build-only: $(SRC) ## go build only
 	go build -ldflags "-X main.ver $(shell git describe --always)" -o _build/$(BIN)
 
-prebuild-docs:
+prebuild-docs: ## pre-build documentation
 	@if [ -d $(CURDIR)/docs ] && [ -f $(CURDIR)/docs/requirements.txt ]; then \
 		virtualenv $(VENVFLAG) _build/venv;\
 		_build/venv/bin/pip install $(PIPFLAG) -r docs/requirements.txt;\
 	fi
 
-build-docs: prebuild-docs
+build-docs: prebuild-docs ## build documentation
 	@if [ -d $(CURDIR)/docs ] && [ -f $(CURDIR)/docs/requirements.txt ]; then \
 		. _build/venv/bin/activate;\
 		cd docs;\
@@ -101,10 +101,10 @@ build-docs: prebuild-docs
 		deactivate;\
 	fi
 
-clean:
+clean: ## clean _build directory
 	@rm -rf _build/$(BIN) $(GOPATH)/src/$(GOPKG)
 
-test: prebuild
+test: prebuild ## go test
 	go get $(FLAGS) golang.org/x/tools/cmd/goimports
 	go get $(FLAGS) github.com/golang/lint/golint
 ifneq ($(GOVET),1)
@@ -125,3 +125,9 @@ endif
 		gofmt -w $$src ;\
 		goimports -w $$src; \
 	done
+
+help:
+	@grep -h -P '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-30s\033[0m %s\n", $$1, $$2}'
+
+.PHONY:	help
+#.DEFAULT_GOAL := help
