@@ -3,11 +3,15 @@ sudo: false
 
 matrix:
   include:
-    - go: "1.5.3"
+    - go: "1.5.4"
       before_install:
         - go get golang.org/x/tools/cmd/cover
         - go get golang.org/x/tools/cmd/goimports
-    - go: "1.6"
+    - go: "1.6.3"
+      before_install:
+        - go get golang.org/x/tools/cmd/cover
+        - go get golang.org/x/tools/cmd/goimports
+    - go: "1.7rc5"
       before_install:
         - go get golang.org/x/tools/cmd/cover
         - go get golang.org/x/tools/cmd/goimports
