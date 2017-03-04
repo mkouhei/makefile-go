@@ -82,10 +82,10 @@ prebuild: $(SRC) ## pre-build
 	cp -a $(PREBUILD_COPY_OPTS) $(CURDIR)/*.go $(CURDIR)/_build/src/$(GOPKG)
 
 build: prebuild ## go build
-	go build -ldflags "-X main.ver $(shell git describe --always)" -o _build/$(BIN)
+	go build -ldflags "-X main.ver=$(shell git describe --always)" -o _build/$(BIN)
 
 build-only: $(SRC) ## go build only
-	go build -ldflags "-X main.ver $(shell git describe --always)" -o _build/$(BIN)
+	go build -ldflags "-X main.ver=$(shell git describe --always)" -o _build/$(BIN)
 
 prebuild-docs: ## pre-build documentation
 	@if [ -d $(CURDIR)/docs ] && [ -f $(CURDIR)/docs/requirements.txt ]; then \
